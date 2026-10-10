@@ -1,0 +1,28 @@
+{
+  "service_listing": {
+    "title": "{service} for {audience}",
+    "sections": [
+      "## Who this is for\n{audience}",
+      "## What I can deliver\nA clear, carefully edited {service}. Agree on the exact scope and format before starting.",
+      "## How it works\n1. Share the material and requirements.\n2. Confirm the scope, deadline, and any revisions in writing.\n3. Review the finished draft before delivery.",
+      "## Next step\nInvite the reader to ask a question or request a small sample. Do not claim experience, results, or credentials you cannot substantiate."
+    ]
+  },
+  "social_post": {
+    "title": "Draft social post: {topic}",
+    "sections": [
+      "I am exploring a practical way to help {audience} with {topic}.",
+      "The first step is to keep the scope small, agree on what is included, and deliver a useful draft that the customer can review.",
+      "If this would help you, tell me what format or problem matters most. I will share only examples and claims I can verify."
+    ]
+  },
+  "article_outline": {
+    "title": "Draft outline: {topic}",
+    "sections": [
+      "## Intended reader\n{audience}",
+      "## Problem to explain\nDescribe the reader's specific question about {topic}.",
+      "## Outline\n1. State the problem in plain language.\n2. Explain the available options and their trade-offs.\n3. Give a short, practical example.\n4. List what should be checked before acting.",
+      "## Research to add before publishing\nAdd current, reliable sources and verify every factual or time-sensitive claim."
+    ]
+  }
+}

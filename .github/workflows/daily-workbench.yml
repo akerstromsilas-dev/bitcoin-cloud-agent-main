@@ -1,0 +1,56 @@
+name: Zero-Cost Workbench
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: Topic for the local-template draft
+        required: false
+        default: "one-page résumé cleanup service for early-career job seekers"
+        type: string
+  schedule:
+    - cron: "37 17 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: zero-cost-workbench
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Check project
+        run: python -m unittest discover -s tests -v
+
+      - name: Generate a template draft and tracker snapshot
+        env:
+          INPUT_TOPIC: ${{ github.event.inputs.topic }}
+        run: |
+          topic="${INPUT_TOPIC:-one-page résumé cleanup service for early-career job seekers}"
+          python -m workbench draft \
+            --topic "$topic" \
+            --format service_listing \
+            --audience "people seeking a clearer résumé"
+          python -m workbench snapshot
+
+      - name: Upload draft and tracker snapshot
+        uses: actions/upload-artifact@v7
+        with:
+          name: workbench-output
+          path: output/
+          if-no-files-found: error
+          retention-days: 7
